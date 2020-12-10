@@ -1,11 +1,14 @@
 package com.retrofit.demo.remoteService.dao;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class User {
     private String id;
     private int age;
