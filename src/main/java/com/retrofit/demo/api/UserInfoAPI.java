@@ -5,6 +5,7 @@ import com.retrofit.demo.remoteService.responseEntity.Result;
 import com.retrofit.demo.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,16 @@ public class UserInfoAPI {
     @GetMapping("/getUser")
     public User getUser(@RequestParam String id) {
         return userInfoService.getUser(id);
+    }
+
+    @GetMapping("/getUser2")
+    public User getUser2(@RequestParam String id) {
+        return userInfoService.getUser2(id);
+    }
+
+    @PostMapping("/getUserInfo2")
+    public Result<Object> getUserInfo2(@RequestParam String id) {
+        return userInfoService.getUserInfo(id);
     }
     @GetMapping("/getUserInfo")
     public Result<Object> getUserInfo(@RequestParam String id) {
