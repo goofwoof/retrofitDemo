@@ -1,8 +1,0 @@
-user:
-  info:
-    url: http://localhost:8085/api
-retrofit:
-
-server:
-  port: 8085
-  context-path: /api
