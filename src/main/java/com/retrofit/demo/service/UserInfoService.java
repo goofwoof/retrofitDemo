@@ -6,6 +6,9 @@ import com.retrofit.demo.remoteService.service.RemoteUserInfoCallService;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.io.IOException;
 
@@ -31,6 +34,11 @@ public class UserInfoService {
     }
 
     public User getUserByCall(String id) throws IOException {
+        return remoteUserInfoCallService.getUser(id).execute().body();
+    }
+
+    public User getUserNeedHeaders(String id) throws IOException {
+        
         return remoteUserInfoCallService.getUser(id).execute().body();
     }
 }
