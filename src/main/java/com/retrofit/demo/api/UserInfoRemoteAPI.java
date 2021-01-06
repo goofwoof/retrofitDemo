@@ -18,11 +18,11 @@ public class UserInfoRemoteAPI {
 
     @GetMapping("/getUser")
     public User getUser(@RequestParam String id) {
-        return userInfoService.getUser(id);
+        return userInfoService.getUserGET(id);
     }
 
     @PostMapping("/getUser")
     public User getUser2(@RequestParam String id) {
-        return userInfoService.getUser2(id);
+        return userInfoService.getUserPOST(id);
     }
 }

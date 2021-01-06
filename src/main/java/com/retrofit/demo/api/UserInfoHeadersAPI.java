@@ -14,8 +14,8 @@ public class UserInfoHeadersAPI {
     @Autowired
     private UserInfoService userInfoService;
 
-    @GetMapping("/getUserInfoCall")
+    @GetMapping("/getUserInfoCallWithHeaders")
     public User getUser(@RequestParam String id) throws IOException {
-        return userInfoService.(id);
+        return userInfoService.getUserNeedHeaders(id);
     }
 }

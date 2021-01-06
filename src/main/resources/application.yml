@@ -1,8 +1,9 @@
 user:
   info:
-    url: http://localhost:8085/api
+    url: http://localhost:6443/apiService/
 retrofit:
-
+headers: Content-Type,Accept-Language,Cookie
 server:
   port: 8085
-  context-path: /api
+  servlet:
+    context-path: /api

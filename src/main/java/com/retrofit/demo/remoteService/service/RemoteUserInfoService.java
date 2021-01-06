@@ -15,12 +15,12 @@ import java.util.Map;
  */
 @RetrofitClient(baseUrl = "${user.info.url}")
 public interface RemoteUserInfoService {
-    @GET(value = "/getUserInfo")
-    Result<User> getUser(@Query("id") String id);
+    @GET(value = "getUserInfo")
+    Result<User> getUserGET(@Query("id") String id);
 
-    @POST(value = "/getUserInfo")
-    Result<User> getUser2(@Query("id") String id);
+    @POST(value = "getUserInfo")
+    Result<User> getUserPOST(@Query("id") String id);
 
-    @POST(value = "/getUserInfo")
+    @POST(value = "getUserInfo")
     Result<User> getUserNeedHeaders(@HeaderMap Map<String,String> headParams, @Query("id") String id);
 }
