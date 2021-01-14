@@ -26,6 +26,7 @@ public interface RemoteUserInfoService {
     Result<User> getUserRetryFail(@Query("id") String id);
 
     @POST(value = "getUserInfoRetry")
+    @Retry(maxRetries = 10)
     Result<User> getUserRetry(@Query("id") String id);
 
     @POST(value = "getUserInfo")
