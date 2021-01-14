@@ -1,6 +1,7 @@
 package com.retrofit.demo.remoteService.service;
 
 import com.github.lianjiatech.retrofit.spring.boot.annotation.RetrofitClient;
+import com.github.lianjiatech.retrofit.spring.boot.retry.Retry;
 import com.retrofit.demo.remoteService.dao.User;
 import com.retrofit.demo.remoteService.responseEntity.Result;
 import retrofit2.http.GET;
@@ -21,6 +22,12 @@ public interface RemoteUserInfoService {
     @POST(value = "getUserInfo")
     Result<User> getUserPOST(@Query("id") String id);
 
+    @POST(value = "getUserInfoRetryFail")
+    Result<User> getUserRetryFail(@Query("id") String id);
+
+    @POST(value = "getUserInfoRetry")
+    Result<User> getUserRetry(@Query("id") String id);
+
     @POST(value = "getUserInfo")
-    Result<User> getUserNeedHeaders(@HeaderMap Map<String,String> headParams, @Query("id") String id);
+    Result<User> getUserNeedHeaders(@HeaderMap Map<String, String> headParams, @Query("id") String id);
 }

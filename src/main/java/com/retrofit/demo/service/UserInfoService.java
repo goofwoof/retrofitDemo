@@ -29,6 +29,14 @@ public class UserInfoService {
         return remoteUserInfoService.getUserPOST(id).getData();
     }
 
+    public User getUserRetryFail(String id) {
+        return remoteUserInfoService.getUserRetryFail(id).getData();
+    }
+
+    public User getUserRetry(String id) {
+        return remoteUserInfoService.getUserRetry(id).getData();
+    }
+
     public User getUserByCall(String id) throws IOException {
         return remoteUserInfoCallService.getUser(id).execute().body().getData();
     }
