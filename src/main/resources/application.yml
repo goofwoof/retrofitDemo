@@ -18,3 +18,9 @@ retrofit:
     # 全局重试规则
     global-retry-rules:
       - response_status_not_2xx
+  # 熔断降级配置
+  degrade:
+    # 是否启用熔断降级
+    enable: true
+    # 熔断降级实现方式
+    degrade-type: sentinel

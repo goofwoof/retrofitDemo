@@ -21,7 +21,7 @@ public class GlobalExceptionAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public UnifyResponse handleException(HttpServletRequest request, Exception e) {
-        UnifyResponse unifyResponse = new UnifyResponse("999999", e.getCause().getMessage(), request.getRequestURI());
+        UnifyResponse unifyResponse = new UnifyResponse("999999", e.getMessage(), request.getRequestURI());
         System.out.println(unifyResponse);
         return unifyResponse;
     }
