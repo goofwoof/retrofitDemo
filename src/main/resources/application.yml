@@ -2,10 +2,12 @@ user:
   info:
     url: http://localhost:6443/apiService/
 headers: Content-Type,Accept-Language,Cookie
+
 server:
   port: 8085
   servlet:
     context-path: /api
+
 retrofit:
   # 重试配置
   retry:
@@ -18,9 +20,20 @@ retrofit:
     # 全局重试规则
     global-retry-rules:
       - response_status_not_2xx
+
   # 熔断降级配置
   degrade:
-    # 是否启用熔断降级
+    # 是否启用全局熔断降级
     enable: true
     # 熔断降级实现方式
     degrade-type: sentinel
+
+  # 连接池配置
+  pool:
+    # 连接池配置
+    userInfo:
+      # 最大空闲连接数
+      max-idle-connections: 3
+      # 连接保活时间(秒)
+      keep-alive-second: 100
+

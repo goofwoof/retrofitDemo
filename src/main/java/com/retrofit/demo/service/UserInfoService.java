@@ -2,6 +2,7 @@ package com.retrofit.demo.service;
 
 import com.retrofit.demo.remoteService.dao.User;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoCallService;
+import com.retrofit.demo.remoteService.service.RemoteUserInfoPoolService;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class UserInfoService {
     private RemoteUserInfoService remoteUserInfoService;
     @Autowired
     private RemoteUserInfoCallService remoteUserInfoCallService;
+    @Autowired
+    private RemoteUserInfoPoolService remoteUserInfoPoolService;
+
 
     public User getUserGET(String id) {
         return remoteUserInfoService.getUserGET(id).getData();
@@ -32,6 +36,10 @@ public class UserInfoService {
 
     public User getUserRetry(String id) {
         return remoteUserInfoService.getUserRetry(id).getData();
+    }
+
+    public User getUserInfoPool(String id) {
+        return remoteUserInfoPoolService.getUserInfoPool(id).getData();
     }
 
     public User getUserDegrade(String id) {
