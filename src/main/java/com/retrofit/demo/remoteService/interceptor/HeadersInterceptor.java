@@ -1,5 +1,6 @@
 package com.retrofit.demo.remoteService.interceptor;
 
+import com.github.lianjiatech.retrofit.spring.boot.annotation.InterceptMark;
 import com.github.lianjiatech.retrofit.spring.boot.interceptor.BasePathMatchInterceptor;
 import lombok.val;
 import okhttp3.Request;
@@ -17,10 +18,12 @@ import java.io.IOException;
 
 @Component
 public class HeadersInterceptor extends BasePathMatchInterceptor {
-    @Value("${headers}")
+    @Value("${delegate.headers}")
     private String[] headers;
+
     @Override
     protected Response doIntercept(Chain chain) throws IOException {
+        Assert.notEmpty(headers,"config delegate.header should not empty");
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         if (!(requestAttributes instanceof ServletRequestAttributes)){
             throw new RuntimeException("servlet attributes is null");
@@ -35,7 +38,7 @@ public class HeadersInterceptor extends BasePathMatchInterceptor {
     private void setHeaders(Request.Builder builder, HttpServletRequest request, String[] headers) {
         for (String header : headers) {
             String headerInfo = request.getHeader(header);
-            Assert.isTrue(StringUtils.isEmpty(headerInfo),"Error Header Info.");
+            Assert.isTrue(!StringUtils.isEmpty(headerInfo),"Error Header Info.");
             builder.addHeader(header, headerInfo);
         }
     }

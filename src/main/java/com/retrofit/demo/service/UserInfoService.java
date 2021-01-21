@@ -1,6 +1,7 @@
 package com.retrofit.demo.service;
 
 import com.retrofit.demo.remoteService.dao.User;
+import com.retrofit.demo.remoteService.responseEntity.Result;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoCallService;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoPoolService;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoService;
@@ -28,6 +29,10 @@ public class UserInfoService {
 
     public User getUserPOST(String id) {
         return remoteUserInfoService.getUserPOST(id).getData();
+    }
+
+    public Result<Object> deleteUser(String id) {
+        return remoteUserInfoService.deleteUser(id);
     }
 
     public User getUserRetryFail(String id) {

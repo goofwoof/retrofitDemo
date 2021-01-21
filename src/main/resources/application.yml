@@ -1,7 +1,8 @@
 user:
   info:
     url: http://localhost:6443/apiService/
-headers: Content-Type,Accept-Language,Cookie
+delegate:
+  headers: Content-Type,Accept-Language,Cookie
 
 server:
   port: 8085

@@ -6,10 +6,7 @@ import com.github.lianjiatech.retrofit.spring.boot.degrade.DegradeStrategy;
 import com.github.lianjiatech.retrofit.spring.boot.retry.Retry;
 import com.retrofit.demo.remoteService.dao.User;
 import com.retrofit.demo.remoteService.responseEntity.Result;
-import retrofit2.http.GET;
-import retrofit2.http.HeaderMap;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 import java.util.Map;
 
@@ -23,6 +20,15 @@ public interface RemoteUserInfoService {
 
     @POST(value = "getUserInfo")
     Result<User> getUserPOST(@Query("id") String id);
+
+    @POST(value = "getUserPOSTField")
+    Result<User> getUserPOSTField(@Field("id") String id);
+
+    @POST(value = "getUserPOSTFieldMap")
+    Result<User> getUserPOSTFieldMap(@FieldMap Map<String, Object> map);
+
+    @DELETE(value = "deleteUser/{id}")
+    Result<Object> deleteUser(@Path("id") String id);
 
     @POST(value = "getUserInfoRetryFail")
     Result<User> getUserRetryFail(@Query("id") String id);
