@@ -13,12 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author puthlive
@@ -77,15 +73,14 @@ public class UserInfoService {
     }
 
     public Object upload(List<MultipartFile> files) {
-        Map<String, MultipartBody.Part> fileMap = new HashMap<>();
+        List<MultipartBody.Part> fileList = new ArrayList<>();
         files.forEach(multipartFile -> {
             try {
-                MultipartBody.Part part = fileTransform(multipartFile);
-                fileMap.put(multipartFile.getOriginalFilename(), part);
-            } catch (IOException e) {
+                fileList.add(fileTransform(multipartFile));
+            } catch (IOException ignored) {
             }
         });
-        return remoteUpDownLoadService.multiUpload(fileMap);
+        return remoteUpDownLoadService.multiUpload(fileList);
     }
 
     private MultipartBody.Part fileTransform(MultipartFile file) throws IOException {

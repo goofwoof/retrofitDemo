@@ -6,9 +6,8 @@ import okhttp3.MultipartBody;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 
-import java.util.Map;
+import java.util.List;
 
 
 /**
@@ -22,5 +21,5 @@ public interface RemoteUpDownLoadService {
 
     @POST("multiUpload")
     @Multipart
-    ResultEmpty multiUpload(@PartMap Map<String, MultipartBody.Part> files);
+    ResultEmpty multiUpload(@Part List<MultipartBody.Part> files);
 }
