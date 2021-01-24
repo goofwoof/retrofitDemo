@@ -8,6 +8,7 @@ import com.retrofit.demo.remoteService.service.RemoteUserInfoPoolService;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoService;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,6 +73,10 @@ public class UserInfoService {
         return remoteUpDownLoadService.upload(part);
     }
 
+    public ResponseBody download(String file) {
+        return remoteUpDownLoadService.download(file).body();
+    }
+
     public Object upload(List<MultipartFile> files) {
         List<MultipartBody.Part> fileList = new ArrayList<>();
         files.forEach(multipartFile -> {
@@ -87,5 +92,9 @@ public class UserInfoService {
         String fileName = file.getOriginalFilename();
         okhttp3.RequestBody requestBody = okhttp3.RequestBody.create(MediaType.parse("multipart/form-data"),file.getBytes());
         return MultipartBody.Part.createFormData("file", fileName, requestBody);
+    }
+
+    public String getDownloadKey(String file) {
+        return remoteUpDownLoadService.getDownloadKey(file).body();
     }
 }
