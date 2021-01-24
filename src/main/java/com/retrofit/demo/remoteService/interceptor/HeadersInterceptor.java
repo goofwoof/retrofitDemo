@@ -1,6 +1,5 @@
 package com.retrofit.demo.remoteService.interceptor;
 
-import com.github.lianjiatech.retrofit.spring.boot.annotation.InterceptMark;
 import com.github.lianjiatech.retrofit.spring.boot.interceptor.BasePathMatchInterceptor;
 import lombok.val;
 import okhttp3.Request;
