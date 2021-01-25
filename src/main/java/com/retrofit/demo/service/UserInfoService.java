@@ -32,35 +32,86 @@ public class UserInfoService {
     @Autowired
     private RemoteUpDownLoadService remoteUpDownLoadService;
 
-
+    /**
+     * TYPE1: METHOD-GET
+     * @param id
+     * @return
+     */
     public User getUserGET(String id) {
         return remoteUserInfoService.getUserGET(id).getData();
     }
 
+    /**
+     * TYPE1: METHOD-POST
+     * @param id
+     * @return
+     */
     public User getUserPOST(String id) {
         return remoteUserInfoService.getUserPOST(id).getData();
     }
 
+    /**
+     * TYPE1: METHOD-DELETE
+     * @param id
+     * @return
+     */
     public Result<Object> deleteUser(String id) {
         return remoteUserInfoService.deleteUser(id);
     }
 
+    /**
+     * TYPE2: HEADERS/COOKIES
+     * @param id
+     * @return
+     * @throws IOException
+     */
+    public User getUserNeedHeaders(String id) throws IOException {
+        return remoteUserInfoCallService.getUserByCall(id).execute().body().getData();
+    }
+
+    /**
+     * TYPE3: RETRY-FAILURE
+     * @param id
+     * @return
+     */
     public User getUserRetryFail(String id) {
         return remoteUserInfoService.getUserRetryFail(id).getData();
     }
 
+    /**
+     * TYPE3: RETRY-SUCCESS
+     * @param id
+     * @return
+     */
     public User getUserRetry(String id) {
         return remoteUserInfoService.getUserRetry(id).getData();
     }
 
+    /**
+     * TYPE4: POOL
+     * @param id
+     * @return
+     */
     public User getUserInfoPool(String id) {
         return remoteUserInfoPoolService.getUserInfoPool(id).getData();
     }
 
+    /**
+     * TYPE5: DEGRADE
+     * @param id
+     * @return
+     */
     public User getUserDegrade(String id) {
         return remoteUserInfoService.getUserDegrade(id).getData();
     }
 
+    /**
+     * TYPE6: ASYNC-ASYNC
+     * @param id
+     * @return
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     public User getUserAsync(String id) throws ExecutionException, InterruptedException {
         long currentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < 20; i++) {
@@ -71,6 +122,11 @@ public class UserInfoService {
         return remoteUserInfoPoolService.getUserAsync(id+"a").get().getData();
     }
 
+    /**
+     * TYPE6: ASYNC-SYNC-POOL
+     * @param id
+     * @return
+     */
     public User getUserSync(String id) {
         long currentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < 20; i++) {
@@ -81,6 +137,11 @@ public class UserInfoService {
         return remoteUserInfoPoolService.getUserInfoPool(id+"a").getData();
     }
 
+    /**
+     * TYPE6: ASYNC-SYNC
+     * @param id
+     * @return
+     */
     public User getUserInfoSyncNoPool(String id) {
         long currentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < 20; i++) {
@@ -91,19 +152,22 @@ public class UserInfoService {
         return remoteUserInfoService.getUserGET(id+"a").getData();
     }
 
-    public User getUserNeedHeaders(String id) throws IOException {
-        return remoteUserInfoCallService.getUserByCall(id).execute().body().getData();
-    }
-
+    /**
+     * TYPE7: UPLOAD-OFO
+     * @param file
+     * @return
+     * @throws IOException
+     */
     public Object upload(MultipartFile file) throws IOException {
         MultipartBody.Part part = fileTransform(file);
         return remoteUpDownLoadService.upload(part);
     }
 
-    public ResponseBody download(String file) {
-        return remoteUpDownLoadService.download(file).body();
-    }
-
+    /**
+     * TYPE7: UPLOAD-OFM
+     * @param files
+     * @return
+     */
     public Object upload(List<MultipartFile> files) {
         List<MultipartBody.Part> fileList = new ArrayList<>();
         files.forEach(multipartFile -> {
@@ -121,7 +185,13 @@ public class UserInfoService {
         return MultipartBody.Part.createFormData("file", fileName, requestBody);
     }
 
-    public String getDownloadKey(String file) {
-        return remoteUpDownLoadService.getDownloadKey(file).body();
+
+    /**
+     * TYPE7: DOWNLOAD
+     * @param file
+     * @return
+     */
+    public ResponseBody download(String file) {
+        return remoteUpDownLoadService.download(file).body();
     }
 }
