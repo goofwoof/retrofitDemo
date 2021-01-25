@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+/**
+ * Headers/COOKIES
+ * @author puthlive
+ */
 @RestController
 public class UserInfoHeadersAPI {
     @Autowired

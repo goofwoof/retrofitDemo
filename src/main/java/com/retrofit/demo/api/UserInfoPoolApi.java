@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 线程池
+ * @author puthlive
+ */
 @RestController
 public class UserInfoPoolApi {
     @Autowired

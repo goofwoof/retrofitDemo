@@ -2,7 +2,6 @@ package com.retrofit.demo.api;
 
 
 import com.retrofit.demo.remoteService.responseEntity.Result;
-import com.retrofit.demo.remoteService.responseEntity.ResultEmpty;
 import com.retrofit.demo.service.UserInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +13,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
+/**
+ * 文件上传下载
+ * @author puthlive
+ */
 @RestController
 public class UpDownloadAPI {
     private static final Logger LOGGER = LoggerFactory.getLogger(UpDownloadAPI.class);
