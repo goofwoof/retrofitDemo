@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author puthlive
@@ -60,12 +61,38 @@ public class UserInfoService {
         return remoteUserInfoService.getUserDegrade(id).getData();
     }
 
-    public User getUserByCall(String id) throws IOException {
-        return remoteUserInfoCallService.getUser(id).execute().body().getData();
+    public User getUserAsync(String id) throws ExecutionException, InterruptedException {
+        long currentTimeMillis = System.currentTimeMillis();
+        for (int i = 0; i < 20; i++) {
+            remoteUserInfoPoolService.getUserAsync(id+i);
+        }
+        long currentTimeMillis1 = System.currentTimeMillis();
+        System.out.println("task1任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
+        return remoteUserInfoPoolService.getUserAsync(id+"a").get().getData();
+    }
+
+    public User getUserSync(String id) {
+        long currentTimeMillis = System.currentTimeMillis();
+        for (int i = 0; i < 20; i++) {
+            remoteUserInfoPoolService.getUserInfoPool(id+i);
+        }
+        long currentTimeMillis1 = System.currentTimeMillis();
+        System.out.println("task2任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
+        return remoteUserInfoPoolService.getUserInfoPool(id+"a").getData();
+    }
+
+    public User getUserInfoSyncNoPool(String id) {
+        long currentTimeMillis = System.currentTimeMillis();
+        for (int i = 0; i < 20; i++) {
+            remoteUserInfoService.getUserGET(id+i);
+        }
+        long currentTimeMillis1 = System.currentTimeMillis();
+        System.out.println("task3任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
+        return remoteUserInfoService.getUserGET(id+"a").getData();
     }
 
     public User getUserNeedHeaders(String id) throws IOException {
-        return remoteUserInfoCallService.getUser(id).execute().body().getData();
+        return remoteUserInfoCallService.getUserByCall(id).execute().body().getData();
     }
 
     public Object upload(MultipartFile file) throws IOException {
