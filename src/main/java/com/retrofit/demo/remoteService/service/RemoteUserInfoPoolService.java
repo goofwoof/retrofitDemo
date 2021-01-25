@@ -17,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 public interface RemoteUserInfoPoolService {
     @POST(value = "getUserInfo")
     Result<User> getUserInfoPool(@Query("id") String id);
+
     @GET(value = "getUserInfo")
     @Async
     CompletableFuture<Result<User>> getUserAsync(@Query("id") String id);
