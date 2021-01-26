@@ -18,6 +18,9 @@ public interface RemoteUserInfoPoolService {
     Result<User> getUserInfoPool(@Query("id") String id);
 
     @GET(value = "getUserInfo")
+    CompletableFuture<Result<User>> getUserInfoPoolAsync(@Query("id") String id);
+
+    @GET(value = "getUserInfo")
     @Async
     CompletableFuture<Result<User>> getUserAsync(@Query("id") String id);
 }

@@ -97,6 +97,15 @@ public class UserInfoService {
     }
 
     /**
+     * TYPE4: POOL-CompletableFuture
+     * @param id
+     * @return
+     */
+    public User getUserInfoPoolAsync(String id) throws ExecutionException, InterruptedException {
+        return remoteUserInfoPoolService.getUserInfoPoolAsync(id).get().getData();
+    }
+
+    /**
      * TYPE5: DEGRADE
      * @param id
      * @return

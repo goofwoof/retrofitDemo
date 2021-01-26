@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * 线程池
  * @author puthlive
@@ -20,4 +22,10 @@ public class UserInfoPoolApi {
     public User getUserInfoPool(@RequestParam String id) {
         return userInfoService.getUserInfoPool(id);
     }
+
+    @PostMapping("/getUserInfoPoolAsync")
+    public User getUserInfoPoolAsync(@RequestParam String id) throws ExecutionException, InterruptedException {
+        return userInfoService.getUserInfoPoolAsync(id);
+    }
+
 }

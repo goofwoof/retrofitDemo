@@ -22,23 +22,34 @@ public interface RemoteUserInfoService {
     Result<User> getUserPOST(@Query("id") String id);
 
     @POST(value = "getUserPOSTField")
+    @FormUrlEncoded
     Result<User> getUserPOSTField(@Field("id") String id);
 
     @POST(value = "getUserPOSTFieldMap")
+    @FormUrlEncoded
     Result<User> getUserPOSTFieldMap(@FieldMap Map<String, Object> map);
 
     @DELETE(value = "deleteUser/{id}")
     Result<Object> deleteUser(@Path("id") String id);
 
-    @POST(value = "getUserInfoRetryFail")
+    @POST(value = "getUserInfoRetry")
+    @Retry(maxRetries = 3)
     Result<User> getUserRetryFail(@Query("id") String id);
 
     @POST(value = "getUserInfoRetry")
     @Retry(maxRetries = 10)
     Result<User> getUserRetry(@Query("id") String id);
 
+    /**
+     * 信息确保不要重复
+     * @param headParams
+     * @param headerParam
+     * @param id
+     * @return
+     */
     @POST(value = "getUserInfo")
-    Result<User> getUserNeedHeaders(@HeaderMap Map<String, String> headParams, @Query("id") String id);
+    @Headers({"X-Foo: Bar", "XX-Foo: Barr"})
+    Result<User> getUserNeedHeaders(@HeaderMap Map<String, String> headParams, @Header("XXX-Foo") String headerParam, @Query("id") String id);
 
     @POST(value = "getUserDegrade")
     @Retry(maxRetries = 10)
