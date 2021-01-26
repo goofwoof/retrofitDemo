@@ -5,7 +5,6 @@ import com.retrofit.demo.remoteService.dao.User;
 import com.retrofit.demo.remoteService.responseEntity.Result;
 import org.springframework.scheduling.annotation.Async;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 import java.util.concurrent.CompletableFuture;
@@ -13,9 +12,9 @@ import java.util.concurrent.CompletableFuture;
 /**
  * @author puthlive
  */
-@RetrofitClient(baseUrl = "${user.info.url}", poolName = "userInfo")
+@RetrofitClient(baseUrl = "${user.info.url}")
 public interface RemoteUserInfoPoolService {
-    @POST(value = "getUserInfo")
+    @GET(value = "getUserInfo")
     Result<User> getUserInfoPool(@Query("id") String id);
 
     @GET(value = "getUserInfo")
