@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * @author puthlive
  */
-@RetrofitClient(baseUrl = "${user.info.url}")
+@RetrofitClient(baseUrl = "${user.info.url}", poolName = "userInfo")
 public interface RemoteUserInfoPoolService {
     @GET(value = "getUserInfo")
     Result<User> getUserInfoPool(@Query("id") String id);
