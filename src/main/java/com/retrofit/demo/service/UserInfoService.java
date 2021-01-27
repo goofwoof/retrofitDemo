@@ -34,8 +34,8 @@ public class UserInfoService {
 
     /**
      * TYPE1: METHOD-GET
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserGET(String id) {
         return remoteUserInfoService.getUserGET(id).getData();
@@ -43,8 +43,8 @@ public class UserInfoService {
 
     /**
      * TYPE1: METHOD-POST
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserPOST(String id) {
         return remoteUserInfoService.getUserPOST(id).getData();
@@ -52,8 +52,8 @@ public class UserInfoService {
 
     /**
      * TYPE1: METHOD-DELETE
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public Result<Object> deleteUser(String id) {
         return remoteUserInfoService.deleteUser(id);
@@ -61,8 +61,8 @@ public class UserInfoService {
 
     /**
      * TYPE2: HEADERS/COOKIES
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      * @throws IOException
      */
     public User getUserNeedHeaders(String id) throws IOException {
@@ -71,8 +71,8 @@ public class UserInfoService {
 
     /**
      * TYPE3: RETRY-FAILURE
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserRetryFail(String id) {
         return remoteUserInfoService.getUserRetryFail(id).getData();
@@ -80,8 +80,8 @@ public class UserInfoService {
 
     /**
      * TYPE3: RETRY-SUCCESS
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserRetry(String id) {
         return remoteUserInfoService.getUserRetry(id).getData();
@@ -89,8 +89,8 @@ public class UserInfoService {
 
     /**
      * TYPE4: POOL
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserInfoPool(String id) {
         return remoteUserInfoPoolService.getUserInfoPool(id).getData();
@@ -98,8 +98,8 @@ public class UserInfoService {
 
     /**
      * TYPE4: POOL-CompletableFuture
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserInfoPoolAsync(String id) throws ExecutionException, InterruptedException {
         return remoteUserInfoPoolService.getUserInfoPoolAsync(id).get().getData();
@@ -107,8 +107,8 @@ public class UserInfoService {
 
     /**
      * TYPE5: DEGRADE
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserDegrade(String id) {
         return remoteUserInfoService.getUserDegrade(id).getData();
@@ -116,8 +116,8 @@ public class UserInfoService {
 
     /**
      * TYPE6: ASYNC-ASYNC
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      * @throws ExecutionException
      * @throws InterruptedException
      */
@@ -133,8 +133,8 @@ public class UserInfoService {
 
     /**
      * TYPE6: ASYNC-SYNC-POOL
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserSync(String id) {
         long currentTimeMillis = System.currentTimeMillis();
@@ -148,8 +148,8 @@ public class UserInfoService {
 
     /**
      * TYPE6: ASYNC-SYNC
-     * @param id
-     * @return
+     * @param id 用户Id
+     * @return 结果
      */
     public User getUserInfoSyncNoPool(String id) {
         long currentTimeMillis = System.currentTimeMillis();
@@ -164,7 +164,7 @@ public class UserInfoService {
     /**
      * TYPE7: UPLOAD-OFO
      * @param file
-     * @return
+     * @return 结果
      * @throws IOException
      */
     public Object upload(MultipartFile file) throws IOException {
@@ -175,7 +175,7 @@ public class UserInfoService {
     /**
      * TYPE7: UPLOAD-OFM
      * @param files
-     * @return
+     * @return 结果
      */
     public Object upload(List<MultipartFile> files) {
         List<MultipartBody.Part> fileList = new ArrayList<>();
@@ -198,7 +198,7 @@ public class UserInfoService {
     /**
      * TYPE7: DOWNLOAD
      * @param file
-     * @return
+     * @return 结果
      */
     public ResponseBody download(String file) {
         return remoteUpDownLoadService.download(file).body();

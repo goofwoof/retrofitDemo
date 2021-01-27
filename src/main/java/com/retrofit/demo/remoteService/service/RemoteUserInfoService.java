@@ -40,17 +40,6 @@ public interface RemoteUserInfoService {
     @Retry(maxRetries = 10)
     Result<User> getUserRetry(@Query("id") String id);
 
-    /**
-     * 信息确保不要重复
-     * @param headParams
-     * @param headerParam
-     * @param id
-     * @return
-     */
-    @POST(value = "getUserInfo")
-    @Headers({"X-Foo: Bar", "XX-Foo: Barr"})
-    Result<User> getUserNeedHeaders(@HeaderMap Map<String, String> headParams, @Header("XXX-Foo") String headerParam, @Query("id") String id);
-
     @POST(value = "getUserDegrade")
     @Retry(maxRetries = 10)
     @Degrade(count = 2, timeWindow = 30, degradeStrategy = DegradeStrategy.AVERAGE_RT)
