@@ -1,9 +1,8 @@
 user:
   info:
     url: http://localhost:6443/api/
-    download: http://localhost:6443/api/download
 delegate:
-  headers: Content-Type,Accept-Language,Cookie
+  headers: Content-Type,Accept-Language,Cookies
 
 server:
   port: 8085

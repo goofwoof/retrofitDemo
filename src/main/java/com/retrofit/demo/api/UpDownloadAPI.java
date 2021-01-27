@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -28,8 +25,6 @@ import java.util.List;
 public class UpDownloadAPI {
     private static final Logger LOGGER = LoggerFactory.getLogger(UpDownloadAPI.class);
 
-    @Value("${user.info.download}")
-    private String FS_URL;
     @Autowired
     private UserInfoService userInfoService;
 
@@ -69,5 +64,10 @@ public class UpDownloadAPI {
             return Result.builder().code(9299398).msg("fail download file").build();
         }
         return null;
+    }
+
+    @GetMapping("/download")
+    public Object downloadGet(@RequestParam("file") String file) {
+        return userInfoService.download(file);
     }
 }

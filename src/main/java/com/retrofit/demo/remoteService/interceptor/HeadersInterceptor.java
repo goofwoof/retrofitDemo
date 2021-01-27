@@ -37,7 +37,8 @@ public class HeadersInterceptor extends BasePathMatchInterceptor {
     private void setHeaders(Request.Builder builder, HttpServletRequest request, String[] headers) {
         for (String header : headers) {
             String headerInfo = request.getHeader(header);
-            Assert.isTrue(!StringUtils.isEmpty(headerInfo),"Error Header Info.");
+            Assert.isTrue(!StringUtils.isEmpty(headerInfo),"Error Header Info " +
+                    ""+ header);
             builder.addHeader(header, headerInfo);
         }
     }
