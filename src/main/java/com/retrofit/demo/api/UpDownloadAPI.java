@@ -65,9 +65,4 @@ public class UpDownloadAPI {
         }
         return null;
     }
-
-    @GetMapping("/download")
-    public Object downloadGet(@RequestParam("file") String file) {
-        return userInfoService.download(file);
-    }
 }
