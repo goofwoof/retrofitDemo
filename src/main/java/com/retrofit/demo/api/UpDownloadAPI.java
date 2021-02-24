@@ -51,7 +51,7 @@ public class UpDownloadAPI {
         response.reset();
         response.setContentType(download.contentType().type());
         response.setContentLength((int) download.contentLength());
-        response.setHeader("Content-Disposition", "attachment;filename=" + file);
+        response.setHeader("Content-Disposition", "attachment;filename=\"" + file + "\"");
         try(BufferedInputStream bis = new BufferedInputStream(download.byteStream())) {
             byte[] buff = new byte[1024];
             OutputStream os  = response.getOutputStream();

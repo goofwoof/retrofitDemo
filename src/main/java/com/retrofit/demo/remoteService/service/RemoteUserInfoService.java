@@ -42,6 +42,6 @@ public interface RemoteUserInfoService {
 
     @POST(value = "getUserDegrade")
     @Retry(maxRetries = 10)
-    @Degrade(count = 2, timeWindow = 30, degradeStrategy = DegradeStrategy.AVERAGE_RT)
+    @Degrade(count = 2, timeWindow = 10, degradeStrategy = DegradeStrategy.AVERAGE_RT)
     Result<User> getUserDegrade(@Query("id") String id);
 }
