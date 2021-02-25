@@ -1,11 +1,13 @@
 package com.retrofit.demo.service;
 
+import com.fasterxml.jackson.core.JsonFactoryBuilder;
 import com.retrofit.demo.remoteService.dao.User;
 import com.retrofit.demo.remoteService.responseEntity.Result;
 import com.retrofit.demo.remoteService.service.RemoteUpDownLoadService;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoCallService;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoPoolService;
 import com.retrofit.demo.remoteService.service.RemoteUserInfoService;
+import com.retrofit.demo.service.request.QueryReq;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -48,7 +50,7 @@ public class UserInfoService {
      * @return 结果
      */
     public User getUserPOST(String id) {
-        return remoteUserInfoService.getUserPOST(id).getData();
+        return remoteUserInfoService.getUserPOST(new QueryReq(id)).getData();
     }
 
     /**

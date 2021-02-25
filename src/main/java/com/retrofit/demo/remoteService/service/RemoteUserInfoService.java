@@ -6,6 +6,7 @@ import com.github.lianjiatech.retrofit.spring.boot.degrade.DegradeStrategy;
 import com.github.lianjiatech.retrofit.spring.boot.retry.Retry;
 import com.retrofit.demo.remoteService.dao.User;
 import com.retrofit.demo.remoteService.responseEntity.Result;
+import com.retrofit.demo.service.request.QueryReq;
 import retrofit2.http.*;
 
 import java.util.Map;
@@ -19,7 +20,7 @@ public interface RemoteUserInfoService {
     Result<User> getUserGET(@Query("id") String id);
 
     @POST(value = "getUserInfo")
-    Result<User> getUserPOST(@Query("id") String id);
+    Result<User> getUserPOST(@Body QueryReq req);
 
     @POST(value = "getUserPOSTField")
     @FormUrlEncoded
