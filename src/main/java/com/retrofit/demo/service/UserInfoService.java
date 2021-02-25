@@ -138,32 +138,17 @@ public class UserInfoService {
     }
 
     /**
-     * TYPE6: ASYNC-SYNC-POOL
+     * TYPE6: ASYNC-SYNC
      * @param id 用户Id
      * @return 结果
      */
     public User getUserSync(String id) {
         long currentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < 20; i++) {
-            remoteUserInfoPoolService.getUserInfoPool(id+i);
-        }
-        long currentTimeMillis1 = System.currentTimeMillis();
-        System.out.println("task2任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
-        return remoteUserInfoPoolService.getUserInfoPool(id+"a").getData();
-    }
-
-    /**
-     * TYPE6: ASYNC-SYNC
-     * @param id 用户Id
-     * @return 结果
-     */
-    public User getUserInfoSyncNoPool(String id) {
-        long currentTimeMillis = System.currentTimeMillis();
-        for (int i = 0; i < 20; i++) {
             remoteUserInfoService.getUserGET(id+i);
         }
         long currentTimeMillis1 = System.currentTimeMillis();
-        System.out.println("task3任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
+        System.out.println("task2任务耗时:"+(currentTimeMillis1-currentTimeMillis)+"ms");
         return remoteUserInfoService.getUserGET(id+"a").getData();
     }
 

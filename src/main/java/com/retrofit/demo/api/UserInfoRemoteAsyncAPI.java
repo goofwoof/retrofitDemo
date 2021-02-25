@@ -28,9 +28,4 @@ public class UserInfoRemoteAsyncAPI {
     public User getUserInfoSync(@RequestParam String id) {
         return userInfoService.getUserSync(id);
     }
-
-    @GetMapping("/getUserInfoSyncNoPool")
-    public User getUserInfoSyncNoPool(@RequestParam String id) throws ExecutionException, InterruptedException {
-        return userInfoService.getUserInfoSyncNoPool(id);
-    }
 }

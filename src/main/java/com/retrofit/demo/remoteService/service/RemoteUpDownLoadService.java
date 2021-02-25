@@ -22,12 +22,10 @@ import java.util.List;
 public interface RemoteUpDownLoadService {
     @POST("upload")
     @Multipart
-    @Streaming
     ResultEmpty upload(@Part MultipartBody.Part file);
 
     @POST("multiUpload")
     @Multipart
-    @Streaming
     ResultEmpty multiUpload(@Part List<MultipartBody.Part> files);
 
     @POST("download")

@@ -2,6 +2,7 @@ package com.retrofit.demo.remoteService.service;
 
 import com.github.lianjiatech.retrofit.spring.boot.annotation.Intercept;
 import com.github.lianjiatech.retrofit.spring.boot.annotation.RetrofitClient;
+import com.retrofit.demo.remoteService.annotation.Delegate;
 import com.retrofit.demo.remoteService.dao.User;
 import com.retrofit.demo.remoteService.interceptor.HeadersInterceptor;
 import com.retrofit.demo.remoteService.responseEntity.Result;
@@ -14,7 +15,8 @@ import java.util.Map;
  * @author puthlive
  */
 @RetrofitClient(baseUrl = "${user.info.url}")
-@Intercept(handler = HeadersInterceptor.class)
+@Delegate
+//@Intercept(handler = HeadersInterceptor.class)
 public interface RemoteUserInfoCallService {
     @GET(value = "getUserInfo")
     Call<Result<User>> getUserByCall(@Query("id") String id);
@@ -26,7 +28,7 @@ public interface RemoteUserInfoCallService {
      * @param id 用户Id
      * @return 结果
      */
-    @POST(value = "getUserInfo")
+    @GET(value = "getUserInfo")
     @Headers({"X-Foo: Bar", "XX-Foo: Barr"})
     Result<User> getUserNeedHeaders(@HeaderMap Map<String, String> headParams, @Header("XXX-Foo") String headerParam, @Query("id") String id);
 }

@@ -29,7 +29,6 @@ public class UpDownloadAPI {
     private UserInfoService userInfoService;
 
     @PostMapping("/upload")
-    @ResponseBody
     public Object upload(@RequestParam("file") MultipartFile file) throws IOException {
         if (file.isEmpty()) {
             return "上传失败，请选择文件-retrofit Demo";
@@ -38,7 +37,6 @@ public class UpDownloadAPI {
     }
 
     @PostMapping("/multiUpload")
-    @ResponseBody
     public Object multiUpload(MultipartHttpServletRequest request) {
         List<MultipartFile> files = request.getFiles("file");
         return userInfoService.upload(files);
@@ -63,6 +61,6 @@ public class UpDownloadAPI {
         } catch (IOException e) {
             return Result.builder().code(9299398).msg("fail download file").build();
         }
-        return null;
+        return Result.builder().code(9299399).msg("Empty file").build();
     }
 }
